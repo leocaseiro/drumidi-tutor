@@ -1,0 +1,7 @@
+{
+  "name": "ionic-sidemenu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
