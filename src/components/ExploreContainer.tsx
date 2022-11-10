@@ -8,7 +8,7 @@ interface ContainerProps {
 
 const ExploreContainer: React.FC<ContainerProps> = ({ name }) => {
     return (
-        <div className="containe`r">
+        <div className="container">
             <strong>{name}</strong>
             <p>
                 Explore{' '}
