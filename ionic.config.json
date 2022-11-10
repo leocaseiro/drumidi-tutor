@@ -1,7 +1,7 @@
 {
-  "name": "ionic-sidemenu",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
+    "name": "drumidi-tutor",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "react"
 }
