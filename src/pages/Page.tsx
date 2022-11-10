@@ -3,6 +3,8 @@ import {
     IonButtons,
     IonContent,
     IonHeader,
+    IonIcon,
+    IonItem,
     IonMenuButton,
     IonPage,
     IonTitle,
@@ -10,10 +12,12 @@ import {
 } from '@ionic/react';
 import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
+import { usePage } from '../hooks/usePage';
 import './Page.css';
 
 const Page: React.FC = () => {
     const { name } = useParams<{ name: string }>();
+    const { icon } = usePage(name);
 
     return (
         <IonPage>
@@ -22,7 +26,12 @@ const Page: React.FC = () => {
                     <IonButtons slot="start">
                         <IonMenuButton />
                     </IonButtons>
-                    <IonTitle>{name}</IonTitle>
+                    <IonTitle>
+                        <IonItem>
+                            {icon && <IonIcon slot="start" icon={icon} />}{' '}
+                            {name}
+                        </IonItem>
+                    </IonTitle>
                 </IonToolbar>
             </IonHeader>
 
