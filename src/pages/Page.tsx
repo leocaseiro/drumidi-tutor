@@ -13,7 +13,6 @@ import {
 import { useParams } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
 import { usePage } from '../hooks/usePage';
-import './Page.css';
 
 const Page: React.FC = () => {
     const { name } = useParams<{ name: string }>();

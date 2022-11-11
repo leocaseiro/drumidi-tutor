@@ -5,7 +5,6 @@ import {
     IonContent,
     IonHeader,
     IonIcon,
-    IonItem,
     IonLabel,
     IonMenuButton,
     IonPage,
@@ -13,10 +12,9 @@ import {
     IonToolbar,
 } from '@ionic/react';
 import { useParams } from 'react-router';
-// import './Page.css';
 
 const Lesson: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
+    const { category, id } = useParams<{ category: string; id: string }>();
 
     return (
         <IonPage>
@@ -26,15 +24,17 @@ const Lesson: React.FC = () => {
                         <IonMenuButton />
                     </IonButtons>
                     <IonTitle>
-                        <IonItem>
-                            <IonIcon slot="start" icon={school} />
-                            <IonLabel>Lesson {id}</IonLabel>
-                        </IonItem>
+                        <IonIcon slot="start" icon={school} />
+                        <IonLabel>
+                            Lesson {category} {id}
+                        </IonLabel>
                     </IonTitle>
                 </IonToolbar>
             </IonHeader>
 
-            <IonContent fullscreen>Lesson {id} Here</IonContent>
+            <IonContent fullscreen>
+                Lesson {category} {id}
+            </IonContent>
         </IonPage>
     );
 };

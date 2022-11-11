@@ -33,16 +33,12 @@ module.exports = {
                 endOfLine: 'auto',
             },
         ],
-        'no-unused-vars': 'error',
-        // 'unused-imports/no-unused-imports': 'error',
         'sort-imports': [
             'error',
             {
                 'ignoreDeclarationSort': true
             }
         ],
-        // 'react/jsx-uses-react': 'warn',
-        // 'react/jsx-uses-vars': 'warn',
         "@typescript-eslint/no-unused-vars": [
             "warn", // or "error"
             {
