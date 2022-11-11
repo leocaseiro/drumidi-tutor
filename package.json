@@ -5,6 +5,8 @@
     "dependencies": {
         "@ionic/react": "^6.0.0",
         "@ionic/react-router": "^6.0.0",
+        "abcjs": "^6.1.6",
+        "font-awesome": "^4.7.0",
         "ionicons": "^6.0.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
