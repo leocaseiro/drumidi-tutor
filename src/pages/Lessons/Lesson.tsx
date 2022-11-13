@@ -11,15 +11,15 @@ import {
     IonTitle,
     IonToolbar,
 } from '@ionic/react';
-import { useDrumAbcString } from '../../hooks/useDrumAbcString';
+import { getDrumAbcString } from '../../hooks/useDrumAbcString';
 import { useParams } from 'react-router';
 import AbcNotation from '../../components/AbcNotation';
 
 const Lesson: React.FC = () => {
     const { category, id } = useParams<{ category: string; id: string }>();
 
-    const abcString1 = useDrumAbcString('', 'g');
-    const abcString2 = useDrumAbcString('', 'c');
+    const abcString1 = getDrumAbcString('', 'g');
+    const abcString2 = getDrumAbcString('', 'c');
 
     return (
         <IonPage>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useDrumAbcString = (title: string, note: string) => {
-    const [abcStringWithNote, setAbcStringWithNote] = useState('');
+export const getDrumAbcString = (title: string, note: string) => {
     const defaultAbcString = `
 %%percmap D  pedal-hi-hat x
 %%percmap E  bass-drum-1
@@ -30,9 +29,7 @@ K:C perc
 V:ALL stem=up
 `;
 
-    useEffect(() => {
-        setAbcStringWithNote(`X:1\nT:${title}${defaultAbcString}${note}`);
-    }, [title, note]);
+    const abcStringWithNote = `X:1\nT:${title}${defaultAbcString}${note}`;
 
     return abcStringWithNote;
 };
