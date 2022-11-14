@@ -21,7 +21,8 @@ import { useParams } from 'react-router';
 import AbcNotation from '../../components/AbcNotation';
 import {
     getDrumMapNotes,
-    getNoteByLabel,
+    getNoteByMidi,
+    getNoteByName,
     getRandomNote,
     getShownNotes,
 } from '../../hooks/useDrumMap';
@@ -29,8 +30,9 @@ import {
 const Exercise: React.FC = () => {
     const { category, id } = useParams<{ category: string; id: string }>();
 
-    const [notes, setNotes] = useState(getShownNotes(getDrumMapNotes()));
-    const [note, setNote] = useState(getRandomNote(notes));
+    const [notes, setNotes] = useState(getDrumMapNotes());
+    const [shownNotes, setShownNotes] = useState(getShownNotes(notes));
+    const [note, setNote] = useState(getRandomNote(shownNotes));
     const [abcString, setAbcString] = useState(getDrumAbcString('', note.abc));
     const [present] = useIonToast();
 
@@ -39,30 +41,40 @@ const Exercise: React.FC = () => {
     ) => {
         // eslint-disable-next-line
         // debugger;
-        console.log('note', note);
+        // console.log('note', note);
         const { noteMidi } = (event.target as HTMLIonButtonElement).dataset;
         let msg;
         let icon;
         let color;
+        let duration = 1000;
 
         if (Number(noteMidi) === note.midi) {
             msg = `Correct ${note.label}`;
             icon = checkmarkCircle;
             color = 'success';
+            duration = 1000;
         } else {
-            msg = `Wrong, it was ${note.label}:${note.midi}, instead of ${noteMidi}`;
+            const wrongMidi = getNoteByMidi(shownNotes, Number(noteMidi));
+            msg = `Wrong, it was ${note.label}:${note.midi}, instead of ${wrongMidi?.label}`;
             icon = closeCircle;
             color = 'danger';
+            duration = 3000;
         }
 
         present({
             message: msg,
-            duration: 3000,
+            duration,
             icon,
             color,
+            buttons: [
+                {
+                    text: 'Dismiss',
+                    role: 'cancel',
+                },
+            ],
         });
 
-        const randomNote = getRandomNote(notes);
+        const randomNote = getRandomNote(shownNotes);
         setNote(randomNote);
         setAbcString(getDrumAbcString('', randomNote.abc));
     };
@@ -93,7 +105,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'open-hi-hat')?.midi
+                                    getNoteByName(notes, 'open-hi-hat')?.midi
                                 }
                             >
                                 Open Hi-hat
@@ -101,7 +113,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'closed-hi-hat')?.midi
+                                    getNoteByName(notes, 'closed-hi-hat')?.midi
                                 }
                             >
                                 Closed Hi-hat
@@ -111,20 +123,21 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'crash-cymbal-1')
-                                        ?.midi
+                                    getNoteByName(notes, 'crash-cymbal-1')?.midi
                                 }
                             >
                                 Crash
                             </IonButton>
                         </IonCol>
-                        <IonCol
-                            onClick={handleClick}
-                            data-note-midi={
-                                getNoteByLabel(notes, 'ride-cymbal-1')?.midi
-                            }
-                        >
-                            <IonButton>Ride</IonButton>
+                        <IonCol>
+                            <IonButton
+                                onClick={handleClick}
+                                data-note-midi={
+                                    getNoteByName(notes, 'ride-cymbal-1')?.midi
+                                }
+                            >
+                                Ride
+                            </IonButton>
                         </IonCol>
                     </IonRow>
                     <IonRow>
@@ -132,8 +145,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'acoustic-snare')
-                                        ?.midi
+                                    getNoteByName(notes, 'acoustic-snare')?.midi
                                 }
                             >
                                 Snare
@@ -143,7 +155,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'hi-mid-tom')?.midi
+                                    getNoteByName(notes, 'hi-mid-tom')?.midi
                                 }
                             >
                                 High Tom
@@ -153,7 +165,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'low-mid-tom')?.midi
+                                    getNoteByName(notes, 'low-mid-tom')?.midi
                                 }
                             >
                                 Low Tom
@@ -165,7 +177,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'closed-hi-hat')?.midi
+                                    getNoteByName(notes, 'pedal-hi-hat')?.midi
                                 }
                             >
                                 Pedal Hi-Hat
@@ -175,7 +187,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'acoustic-bass-drum')
+                                    getNoteByName(notes, 'acoustic-bass-drum')
                                         ?.midi
                                 }
                             >
@@ -186,8 +198,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByLabel(notes, 'high-floor-tom')
-                                        ?.midi
+                                    getNoteByName(notes, 'high-floor-tom')?.midi
                                 }
                             >
                                 Floor Tom
