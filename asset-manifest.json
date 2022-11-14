@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/drumidi-tutor/static/css/main.e12c8235.css",
+    "main.js": "/drumidi-tutor/static/js/main.8ce96a68.js",
+    "static/js/738.87ca1b21.chunk.js": "/drumidi-tutor/static/js/738.87ca1b21.chunk.js",
+    "static/js/372.27105188.chunk.js": "/drumidi-tutor/static/js/372.27105188.chunk.js",
+    "static/js/856.dd75e81d.chunk.js": "/drumidi-tutor/static/js/856.dd75e81d.chunk.js",
+    "static/js/851.e9ff272c.chunk.js": "/drumidi-tutor/static/js/851.e9ff272c.chunk.js",
+    "static/js/22.e5201ec5.chunk.js": "/drumidi-tutor/static/js/22.e5201ec5.chunk.js",
+    "static/js/272.d36c328f.chunk.js": "/drumidi-tutor/static/js/272.d36c328f.chunk.js",
+    "static/js/841.3f76f083.chunk.js": "/drumidi-tutor/static/js/841.3f76f083.chunk.js",
+    "static/js/186.02e69245.chunk.js": "/drumidi-tutor/static/js/186.02e69245.chunk.js",
+    "static/js/377.9d158b84.chunk.js": "/drumidi-tutor/static/js/377.9d158b84.chunk.js",
+    "service-worker.js": "/drumidi-tutor/service-worker.js",
+    "index.html": "/drumidi-tutor/index.html",
+    "main.e12c8235.css.map": "/drumidi-tutor/static/css/main.e12c8235.css.map",
+    "main.8ce96a68.js.map": "/drumidi-tutor/static/js/main.8ce96a68.js.map",
+    "738.87ca1b21.chunk.js.map": "/drumidi-tutor/static/js/738.87ca1b21.chunk.js.map",
+    "372.27105188.chunk.js.map": "/drumidi-tutor/static/js/372.27105188.chunk.js.map",
+    "856.dd75e81d.chunk.js.map": "/drumidi-tutor/static/js/856.dd75e81d.chunk.js.map",
+    "851.e9ff272c.chunk.js.map": "/drumidi-tutor/static/js/851.e9ff272c.chunk.js.map",
+    "22.e5201ec5.chunk.js.map": "/drumidi-tutor/static/js/22.e5201ec5.chunk.js.map",
+    "272.d36c328f.chunk.js.map": "/drumidi-tutor/static/js/272.d36c328f.chunk.js.map",
+    "841.3f76f083.chunk.js.map": "/drumidi-tutor/static/js/841.3f76f083.chunk.js.map",
+    "186.02e69245.chunk.js.map": "/drumidi-tutor/static/js/186.02e69245.chunk.js.map",
+    "377.9d158b84.chunk.js.map": "/drumidi-tutor/static/js/377.9d158b84.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e12c8235.css",
+    "static/js/main.8ce96a68.js"
+  ]
+}
