@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-debugger */
+import React, { useEffect } from 'react';
 import {
     IonContent,
     IonIcon,
@@ -9,7 +10,10 @@ import {
     IonMenu,
     IonMenuToggle,
     IonNote,
+    IonSelect,
+    IonSelectOption,
     IonToggle,
+    SelectChangeEventDetail,
     ToggleChangeEventDetail,
 } from '@ionic/react';
 
@@ -17,6 +21,7 @@ import { useLocation } from 'react-router-dom';
 import { flask, musicalNotes, options, play, school } from 'ionicons/icons';
 import './Menu.css';
 import { useDataProvider } from '../store';
+import { useMidi } from '../hooks/useMidi';
 
 export interface AppPage {
     url: string;
@@ -54,10 +59,23 @@ export const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
     const location = useLocation();
-    const { midiEnabled, setMidiEnabled } = useDataProvider() ?? {};
+    const { midiDevice, midiEnabled, setMidiDevice, setMidiEnabled } =
+        useDataProvider() ?? {};
+    const { devices, init: initMidi, openDevice } = useMidi();
 
-    const onMidiChange = (e: CustomEvent<ToggleChangeEventDetail>) => {
-        setMidiEnabled && setMidiEnabled(e?.detail?.checked ?? false);
+    useEffect(initMidi, []);
+
+    const onToggleMidiChange = (e: CustomEvent<ToggleChangeEventDetail>) => {
+        const { checked } = e.detail;
+        setMidiEnabled && setMidiEnabled(checked);
+        if (checked === false) {
+            setMidiDevice && setMidiDevice(null);
+        }
+    };
+
+    const onSelectMidiChange = (e: CustomEvent<SelectChangeEventDetail>) => {
+        openDevice(e.detail.value);
+        setMidiDevice && setMidiDevice(e.detail.value);
     };
 
     return (
@@ -71,9 +89,24 @@ const Menu: React.FC = () => {
                         <IonToggle
                             enableOnOffLabels={true}
                             checked={midiEnabled}
+                            disabled={devices.length === 0}
                             slot="start"
-                            onIonChange={onMidiChange}
+                            onIonChange={onToggleMidiChange}
                         ></IonToggle>
+                        {devices.length > 0 && (
+                            <IonSelect
+                                onIonChange={onSelectMidiChange}
+                                placeholder="Devices"
+                                okText="Select"
+                                value={midiDevice}
+                            >
+                                {devices.map((device, index) => (
+                                    <IonSelectOption key={index} value={index}>
+                                        {device}
+                                    </IonSelectOption>
+                                ))}
+                            </IonSelect>
+                        )}
                     </IonItem>
                     {appPages.map((appPage, index) => {
                         return (

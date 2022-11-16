@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { checkmarkCircle, closeCircle, school } from 'ionicons/icons';
 import {
     IonButton,
@@ -27,9 +27,12 @@ import {
     getRandomNote,
     getShownNotes,
 } from '../../hooks/useDrumMap';
+// import { useMidi } from '../../hooks/useMidi';
+import { useDataProvider } from '../../store';
 
 const Exercise: React.FC = () => {
     const { category, id } = useParams<{ category: string; id: string }>();
+    const { messages } = useDataProvider() ?? {};
 
     const [notes, setNotes] = useState(getDrumMapNotes());
     const [shownNotes, setShownNotes] = useState(getShownNotes(notes));
@@ -37,25 +40,36 @@ const Exercise: React.FC = () => {
     const [abcString, setAbcString] = useState(getDrumAbcString('', note.abc));
     const [present] = useIonToast();
 
+    useEffect(() => {
+        if (!messages || messages.length === 0) {
+            return;
+        }
+        const lastMessage = messages[messages.length - 1];
+        if (lastMessage.type === 'NoteOn') {
+            checkNote(lastMessage.note);
+        }
+    }, [messages]);
+
     const handleClick = (
         event: React.MouseEvent<HTMLIonButtonElement, MouseEvent>
     ) => {
-        // eslint-disable-next-line
-        // debugger;
-        // console.log('note', note);
         const { noteMidi } = (event.target as HTMLIonButtonElement).dataset;
+        checkNote(Number(noteMidi));
+    };
+
+    const checkNote = (noteMidi: number) => {
         let msg;
         let icon;
         let color;
         let duration = 1000;
 
-        if (Number(noteMidi) === note.midi) {
+        if (noteMidi === note.midi) {
             msg = `Correct ${note.label}`;
             icon = checkmarkCircle;
             color = 'success';
             duration = 1000;
         } else {
-            const wrongMidi = getNoteByMidi(shownNotes, Number(noteMidi));
+            const wrongMidi = getNoteByMidi(shownNotes, noteMidi);
             msg = `Wrong, it was ${note.label}:${note.midi}, instead of ${wrongMidi?.label}`;
             icon = closeCircle;
             color = 'danger';
