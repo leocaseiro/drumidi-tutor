@@ -9,11 +9,14 @@ import {
     IonMenu,
     IonMenuToggle,
     IonNote,
+    IonToggle,
+    ToggleChangeEventDetail,
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
 import { flask, musicalNotes, options, play, school } from 'ionicons/icons';
 import './Menu.css';
+import { useDataProvider } from '../store';
 
 export interface AppPage {
     url: string;
@@ -51,6 +54,11 @@ export const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
     const location = useLocation();
+    const { midiEnabled, setMidiEnabled } = useDataProvider() ?? {};
+
+    const onMidiChange = (e: CustomEvent<ToggleChangeEventDetail>) => {
+        setMidiEnabled && setMidiEnabled(e?.detail?.checked ?? false);
+    };
 
     return (
         <IonMenu contentId="main" type="overlay">
@@ -58,6 +66,15 @@ const Menu: React.FC = () => {
                 <IonList id="menu-list">
                     <IonListHeader>DruMIDI Tutor</IonListHeader>
                     <IonNote>by @lcaseiro</IonNote>
+                    <IonItem lines="none" detail={false}>
+                        <IonLabel>MIDI</IonLabel>
+                        <IonToggle
+                            enableOnOffLabels={true}
+                            checked={midiEnabled}
+                            slot="start"
+                            onIonChange={onMidiChange}
+                        ></IonToggle>
+                    </IonItem>
                     {appPages.map((appPage, index) => {
                         return (
                             <IonMenuToggle key={index} autoHide={false}>

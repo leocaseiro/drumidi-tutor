@@ -11,10 +11,13 @@
         "lint:fix": "tsc --noEmit && eslint src/**/*.ts{,x} --fix"
     },
     "dependencies": {
+        "@capacitor/android": "4.4.0",
         "@capacitor/core": "4.4.0",
+        "@capacitor/ios": "4.4.0",
         "@ionic/react": "^6.0.0",
         "@ionic/react-router": "^6.0.0",
         "abcjs": "^6.1.6",
+        "capacitor-midi": "^0.0.12",
         "font-awesome": "^4.7.0",
         "ionicons": "^6.0.3",
         "react": "^18.2.0",

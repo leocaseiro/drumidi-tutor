@@ -44,8 +44,15 @@ const Exercises: React.FC<RouteComponentProps> = ({ match }) => {
                         </IonItemDivider>
                         <IonItem
                             routerLink={`${match.url}/note/identification`}
+                            routerDirection="none"
                         >
                             <IonLabel>1.1 Identification</IonLabel>
+                        </IonItem>
+                        <IonItem
+                            routerLink={`${match.url}/note/midi`}
+                            routerDirection="none"
+                        >
+                            <IonLabel>1.2 Identification MIDI</IonLabel>
                         </IonItem>
                     </IonItemGroup>
                 </IonList>

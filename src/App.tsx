@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext } from 'react';
 import {
     IonApp,
     IonRouterOutlet,
@@ -32,47 +32,59 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import './theme/app.css';
+import MidiComponent from './components/Midi';
+import { DataProvider } from './store';
 
 setupIonicReact();
 
 const App: React.FC = () => {
     return (
         <IonApp>
-            <IonReactRouter>
-                <IonSplitPane contentId="main">
-                    <Menu />
-                    <IonRouterOutlet id="main">
-                        <Route path="/" exact={true}>
-                            <Redirect to="/page/Lessons" />
-                        </Route>
-                        <Route
+            <DataProvider>
+                <IonReactRouter>
+                    <IonSplitPane contentId="main">
+                        <Menu />
+                        <IonRouterOutlet id="main">
+                            <Route path="/" exact={true}>
+                                <Redirect to="/page/lessons" />
+                            </Route>
+                            {/* <Route
                             path="/page/:name"
                             exact={true}
                             component={Page}
-                        />
-                        <Route
-                            path="/page/lessons"
-                            exact={true}
-                            component={Lessons}
-                        />
-                        <Route
-                            path="/page/lessons/:category/:id"
-                            exact={true}
-                            component={Lesson}
-                        />
-                        <Route
-                            path="/page/exercises"
-                            exact={true}
-                            component={Exercises}
-                        />
-                        <Route
-                            path="/page/exercises/:category/:id"
+                        /> */}
+                            <Route
+                                path="/page/lessons"
+                                exact={true}
+                                component={Lessons}
+                            />
+                            <Route
+                                path="/page/lessons/:category/:id"
+                                component={Lesson}
+                            />
+                            <Route
+                                path="/page/exercises"
+                                exact={true}
+                                component={Exercises}
+                            />
+                            <Route
+                                path="/page/exercises/:category/:id"
+                                component={Exercise}
+                            />
+                            <Route
+                                path="/page/exercises/note/midi"
+                                exact={true}
+                                component={MidiComponent}
+                            />
+                            {/* <Route
+                            path="/page/exercises/note/identification"
                             exact={true}
                             component={Exercise}
-                        />
-                    </IonRouterOutlet>
-                </IonSplitPane>
-            </IonReactRouter>
+                        /> */}
+                        </IonRouterOutlet>
+                    </IonSplitPane>
+                </IonReactRouter>
+            </DataProvider>
         </IonApp>
     );
 };

@@ -9,6 +9,7 @@ import {
     IonHeader,
     IonIcon,
     IonLabel,
+    IonListHeader,
     IonMenuButton,
     IonPage,
     IonRow,
@@ -96,7 +97,12 @@ const Exercise: React.FC = () => {
             </IonHeader>
 
             <IonContent fullscreen>
-                Exercise {category} {id}
+                <IonListHeader>
+                    <IonLabel>
+                        Exercise {category} {id}
+                    </IonLabel>
+                </IonListHeader>
+
                 {abcString && <AbcNotation abcString={`${abcString}`} />}
                 <hr />
                 <IonGrid>
