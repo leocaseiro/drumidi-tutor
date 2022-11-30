@@ -32,27 +32,27 @@ export interface AppPage {
 export const appPages: AppPage[] = [
     {
         title: 'Lessons',
-        url: '/page/lessons',
+        url: `/page/lessons`,
         icon: school,
     },
     {
         title: 'Exercises',
-        url: '/page/exercises',
+        url: `/page/exercises`,
         icon: flask,
     },
     {
         title: 'Beats',
-        url: '/page/beats',
+        url: `/page/beats`,
         icon: play,
     },
     {
         title: 'Songs',
-        url: '/page/songs',
+        url: `/page/songs`,
         icon: musicalNotes,
     },
     {
         title: 'Settings',
-        url: '/page/settings',
+        url: `/page/settings`,
         icon: options,
     },
 ];

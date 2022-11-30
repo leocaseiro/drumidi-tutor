@@ -41,43 +41,43 @@ const App: React.FC = () => {
     return (
         <IonApp>
             <DataProvider>
-                <IonReactRouter>
+                <IonReactRouter basename={process.env.PUBLIC_URL}>
                     <IonSplitPane contentId="main">
                         <Menu />
                         <IonRouterOutlet id="main">
                             <Route path="/" exact={true}>
-                                <Redirect to="/page/lessons" />
+                                <Redirect to={`/page/lessons`} />
                             </Route>
                             {/* <Route
-                            path="/page/:name"
+                            path={`/page/name`}
                             exact={true}
                             component={Page}
                         /> */}
                             <Route
-                                path="/page/lessons"
+                                path={`/page/lessons`}
                                 exact={true}
                                 component={Lessons}
                             />
                             <Route
-                                path="/page/lessons/:category/:id"
+                                path={`/page/lessons/:category/:id`}
                                 component={Lesson}
                             />
                             <Route
-                                path="/page/exercises"
+                                path={`/page/exercises`}
                                 exact={true}
                                 component={Exercises}
                             />
                             <Route
-                                path="/page/exercises/:category/:id"
+                                path={`/page/exercises/:category/:id`}
                                 component={Exercise}
                             />
                             <Route
-                                path="/page/exercises/note/midi"
+                                path={`/page/exercises/note/midi`}
                                 exact={true}
                                 component={MidiComponent}
                             />
                             {/* <Route
-                            path="/page/exercises/note/identification"
+                            path={`/page/exercises/note/identification`}
                             exact={true}
                             component={Exercise}
                         /> */}
