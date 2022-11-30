@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://leocaseiro.github.io/drumidi-tutor/static/css/main.5961757d.css",
-    "main.js": "https://leocaseiro.github.io/drumidi-tutor/static/js/main.45ac4501.js",
+    "main.js": "https://leocaseiro.github.io/drumidi-tutor/static/js/main.08ab7e19.js",
     "static/js/738.87ca1b21.chunk.js": "https://leocaseiro.github.io/drumidi-tutor/static/js/738.87ca1b21.chunk.js",
     "static/js/372.27105188.chunk.js": "https://leocaseiro.github.io/drumidi-tutor/static/js/372.27105188.chunk.js",
     "static/js/856.dd75e81d.chunk.js": "https://leocaseiro.github.io/drumidi-tutor/static/js/856.dd75e81d.chunk.js",
@@ -15,7 +15,7 @@
     "service-worker.js": "https://leocaseiro.github.io/drumidi-tutor/service-worker.js",
     "index.html": "https://leocaseiro.github.io/drumidi-tutor/index.html",
     "main.5961757d.css.map": "https://leocaseiro.github.io/drumidi-tutor/static/css/main.5961757d.css.map",
-    "main.45ac4501.js.map": "https://leocaseiro.github.io/drumidi-tutor/static/js/main.45ac4501.js.map",
+    "main.08ab7e19.js.map": "https://leocaseiro.github.io/drumidi-tutor/static/js/main.08ab7e19.js.map",
     "738.87ca1b21.chunk.js.map": "https://leocaseiro.github.io/drumidi-tutor/static/js/738.87ca1b21.chunk.js.map",
     "372.27105188.chunk.js.map": "https://leocaseiro.github.io/drumidi-tutor/static/js/372.27105188.chunk.js.map",
     "856.dd75e81d.chunk.js.map": "https://leocaseiro.github.io/drumidi-tutor/static/js/856.dd75e81d.chunk.js.map",
@@ -29,6 +29,6 @@
   },
   "entrypoints": [
     "static/css/main.5961757d.css",
-    "static/js/main.45ac4501.js"
+    "static/js/main.08ab7e19.js"
   ]
 }
