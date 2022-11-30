@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/drumidi-tutor/static/css/main.5961757d.css",
-    "main.js": "/drumidi-tutor/static/js/main.9a03332c.js",
+    "main.js": "/drumidi-tutor/static/js/main.844d63cc.js",
     "static/js/738.87ca1b21.chunk.js": "/drumidi-tutor/static/js/738.87ca1b21.chunk.js",
     "static/js/372.27105188.chunk.js": "/drumidi-tutor/static/js/372.27105188.chunk.js",
     "static/js/856.dd75e81d.chunk.js": "/drumidi-tutor/static/js/856.dd75e81d.chunk.js",
@@ -15,7 +15,7 @@
     "service-worker.js": "/drumidi-tutor/service-worker.js",
     "index.html": "/drumidi-tutor/index.html",
     "main.5961757d.css.map": "/drumidi-tutor/static/css/main.5961757d.css.map",
-    "main.9a03332c.js.map": "/drumidi-tutor/static/js/main.9a03332c.js.map",
+    "main.844d63cc.js.map": "/drumidi-tutor/static/js/main.844d63cc.js.map",
     "738.87ca1b21.chunk.js.map": "/drumidi-tutor/static/js/738.87ca1b21.chunk.js.map",
     "372.27105188.chunk.js.map": "/drumidi-tutor/static/js/372.27105188.chunk.js.map",
     "856.dd75e81d.chunk.js.map": "/drumidi-tutor/static/js/856.dd75e81d.chunk.js.map",
@@ -29,6 +29,6 @@
   },
   "entrypoints": [
     "static/css/main.5961757d.css",
-    "static/js/main.9a03332c.js"
+    "static/js/main.844d63cc.js"
   ]
 }
