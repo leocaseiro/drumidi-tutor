@@ -26,7 +26,7 @@ import {
     getNoteByName,
     getRandomNote,
     getShownNotes,
-} from '../../hooks/useDrumMap';
+} from '../../utils/drumMap';
 // import { useMidi } from '../../hooks/useMidi';
 import { useDataProvider } from '../../store';
 

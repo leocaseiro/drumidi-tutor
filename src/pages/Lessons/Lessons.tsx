@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { school } from 'ionicons/icons';
 import {
     IonButtons,
@@ -17,8 +17,16 @@ import {
     IonToolbar,
 } from '@ionic/react';
 import { RouteComponentProps } from 'react-router';
+import { getDrumMapNotes } from '../../utils/drumMap';
+
+export interface NotePage {
+    name: string;
+    label: string;
+}
 
 const Lessons: React.FC<RouteComponentProps> = ({ match }) => {
+    const [notes, setNotes] = useState(getDrumMapNotes());
+
     return (
         <IonPage>
             <IonHeader>
@@ -42,29 +50,23 @@ const Lessons: React.FC<RouteComponentProps> = ({ match }) => {
                         <IonItemDivider>
                             <IonLabel>1. Note Identification</IonLabel>
                         </IonItemDivider>
-                        <IonItem routerLink={`${match.url}/note/hi-hat`}>
-                            <IonLabel>1.1 Hi-Hat</IonLabel>
-                        </IonItem>
-                        <IonItem routerLink={`${match.url}/note/snare`}>
-                            <IonLabel>1.2 Snare</IonLabel>
-                        </IonItem>
-                        <IonItem routerLink={`${match.url}/note/bass`}>
-                            <IonLabel>1.3 Bass</IonLabel>
-                        </IonItem>
-                        <IonItem routerLink={`${match.url}/note/toms`}>
-                            <IonLabel>1.4 Toms</IonLabel>
-                        </IonItem>
-                        <IonItem routerLink={`${match.url}/note/ride`}>
-                            <IonLabel>1.5 Ride</IonLabel>
-                        </IonItem>
-                        <IonItem routerLink={`${match.url}/note/crash`}>
-                            <IonLabel>1.6 Crash</IonLabel>
-                        </IonItem>
-                        <IonItem routerLink={`${match.url}/note/effects`}>
-                            <IonLabel>1.7 Effects</IonLabel>
-                        </IonItem>
+                        {notes.map(({ label, name }, i) => (
+                            <IonItem
+                                key={i}
+                                routerLink={`${match.url}/note/${name}`}
+                            >
+                                <IonLabel>
+                                    1.{i + 1} {label}
+                                </IonLabel>
+                            </IonItem>
+                        ))}
+                        {/* <IonItem routerLink={`${match.url}/note/effects`}>
+                            <IonLabel>
+                                1.{notePages.length + 1} Effects
+                            </IonLabel>
+                        </IonItem> */}
                     </IonItemGroup>
-                    <IonItemGroup>
+                    {/* <IonItemGroup>
                         <IonItemDivider>
                             <IonLabel>2. Note Duration</IonLabel>
                         </IonItemDivider>
@@ -74,7 +76,7 @@ const Lessons: React.FC<RouteComponentProps> = ({ match }) => {
                         <IonItem routerLink={`${match.url}/tempo/quarter`}>
                             <IonLabel>2.2 Quarter Notes</IonLabel>
                         </IonItem>
-                    </IonItemGroup>
+                    </IonItemGroup> */}
                 </IonList>
             </IonContent>
         </IonPage>
