@@ -8,11 +8,13 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
-import Page from './pages/Page';
+// import Page from './pages/Page';
 import Exercise from './pages/Exercises/Exercise';
 import Exercises from './pages/Exercises/Exercises';
 import Lesson from './pages/Lessons/Lesson';
 import Lessons from './pages/Lessons/Lessons';
+import Setting from './pages/Settings/Setting';
+import Settings from './pages/Settings/Settings';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -95,6 +97,15 @@ const App: React.FC = () => {
                             exact={true}
                             component={Exercise}
                         /> */}
+                            <Route
+                                path="/page/settings"
+                                exact={true}
+                                component={Settings}
+                            />
+                            <Route
+                                path="/page/settings/:page"
+                                component={Setting}
+                            />
                         </IonRouterOutlet>
                     </IonSplitPane>
                 </IonReactRouter>
