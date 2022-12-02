@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { school } from 'ionicons/icons';
 import {
     IonButtons,
@@ -17,7 +17,7 @@ import {
     IonToolbar,
 } from '@ionic/react';
 import { RouteComponentProps } from 'react-router';
-import { getDrumMapNotes } from '../../utils/drumMap';
+import { Note, getDrumMapNotes } from '../../utils/drumMap';
 
 export interface NotePage {
     name: string;
@@ -25,7 +25,13 @@ export interface NotePage {
 }
 
 const Lessons: React.FC<RouteComponentProps> = ({ match }) => {
-    const [notes, setNotes] = useState(getDrumMapNotes());
+    const [notes, setNotes] = useState<Note[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            setNotes(await getDrumMapNotes());
+        })();
+    }, []);
 
     return (
         <IonPage>

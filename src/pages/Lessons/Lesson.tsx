@@ -23,7 +23,9 @@ const Lesson: React.FC = () => {
     const { category, id } = useParams<{ category: string; id: string }>();
 
     useEffect(() => {
-        setNotes(getDrumMapNotes());
+        (async () => {
+            setNotes(await getDrumMapNotes());
+        })();
     }, [id]);
 
     useEffect(() => {
@@ -35,7 +37,9 @@ const Lesson: React.FC = () => {
             return;
         }
 
-        setAbcString(getDrumAbcString(note.label, note.abc));
+        (async () => {
+            setAbcString(await getDrumAbcString(note.label, note.abc));
+        })();
     }, [note]);
 
     return (

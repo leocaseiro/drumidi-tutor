@@ -21,11 +21,12 @@ import { getDrumAbcString } from '../../hooks/useDrumAbcString';
 import { useParams } from 'react-router';
 import AbcNotation from '../../components/AbcNotation';
 import {
+    Note,
     getDrumMapNotes,
     getNoteByMidi,
     getNoteByName,
     getRandomNote,
-    getShownNotes,
+    getShowingNotes,
 } from '../../utils/drumMap';
 // import { useMidi } from '../../hooks/useMidi';
 import { useDataProvider } from '../../store';
@@ -34,11 +35,23 @@ const Exercise: React.FC = () => {
     const { category, id } = useParams<{ category: string; id: string }>();
     const { messages } = useDataProvider() ?? {};
 
-    const [notes, setNotes] = useState(getDrumMapNotes());
-    const [shownNotes, setShownNotes] = useState(getShownNotes(notes));
-    const [note, setNote] = useState(getRandomNote(shownNotes));
-    const [abcString, setAbcString] = useState(getDrumAbcString('', note.abc));
+    const [notes, setNotes] = useState<Note[]>([]);
+    const [shownNotes, setShowingNotes] = useState<Note[]>([]);
+    const [note, setNote] = useState<Note | undefined>(undefined);
+    const [abcString, setAbcString] = useState<string>();
     const [present] = useIonToast();
+
+    useEffect(() => {
+        (async () => {
+            const drumNotes = await getDrumMapNotes();
+            const showingNotes = getShowingNotes(drumNotes);
+            const randomNote = getRandomNote(showingNotes);
+            setNotes(drumNotes);
+            setShowingNotes(showingNotes);
+            setNote(randomNote);
+            setAbcString(await getDrumAbcString('', randomNote.abc));
+        })();
+    }, []);
 
     useEffect(() => {
         if (!messages || messages.length === 0) {
@@ -50,14 +63,18 @@ const Exercise: React.FC = () => {
         }
     }, [messages]);
 
-    const handleClick = (
+    const handleClick = async (
         event: React.MouseEvent<HTMLIonButtonElement, MouseEvent>
     ) => {
         const { noteMidi } = (event.target as HTMLIonButtonElement).dataset;
-        checkNote(Number(noteMidi));
+        await checkNote(Number(noteMidi));
     };
 
-    const checkNote = (noteMidi: number) => {
+    const checkNote = async (noteMidi: number) => {
+        if (!note) {
+            return false;
+        }
+
         let msg;
         let icon;
         let color;
@@ -91,7 +108,7 @@ const Exercise: React.FC = () => {
 
         const randomNote = getRandomNote(shownNotes);
         setNote(randomNote);
-        setAbcString(getDrumAbcString('', randomNote.abc));
+        setAbcString(await getDrumAbcString('', randomNote.abc));
     };
 
     return (
@@ -143,7 +160,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'crash-cymbal-1')?.midi
+                                    getNoteByName(notes, 'crash-cymbal')?.midi
                                 }
                             >
                                 Crash
@@ -153,7 +170,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'ride-cymbal-1')?.midi
+                                    getNoteByName(notes, 'ride-cymbal')?.midi
                                 }
                             >
                                 Ride

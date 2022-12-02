@@ -1,146 +1,245 @@
+import { get } from './storage';
+
 export type Note = {
-    show: boolean;
-    midi: number;
     abc: string;
-    name: string;
-    sound: string;
+    abcStyle?: string;
     label: string;
+    midi: number;
+    name: string;
     short: string;
+    show: boolean;
+    sound: string;
 };
 
 export const getRandomNote = (notes: Note[]): Note => {
     return notes[Math.floor(Math.random() * notes.length)];
 };
 
-export const getDrumMapNotes = (): Note[] => {
-    const notes = [
-        {
-            show: false,
-            midi: 38,
-            abc: '_c',
-            name: 'electric-snare',
-            sound: 'electric-snare',
-            label: 'Electric Snare',
-            short: 'SN',
-        },
-        {
-            show: true,
-            midi: 38,
-            abc: 'c',
-            name: 'acoustic-snare',
-            sound: 'acoustic-snare',
-            label: 'Snare',
-            short: 'SN',
-        },
-        {
-            show: false,
-            midi: 37,
-            abc: '=c',
-            name: 'side-stick',
-            sound: 'side-stick',
-            label: 'Rim Shot',
-            short: 'RS',
-        },
-        {
-            show: true,
-            midi: 36,
-            abc: 'F',
-            name: 'acoustic-bass-drum',
-            sound: 'acoustic-bass-drum',
-            label: 'Bass',
-            short: 'BS',
-        },
-        {
-            show: true,
-            midi: 42,
-            abc: 'g',
-            name: 'closed-hi-hat',
-            sound: 'closed-hi-hat',
-            label: 'Closed Hi-hat',
-            short: 'CHH',
-        },
-        {
-            show: true,
-            midi: 46,
-            abc: `"^o"^g`,
-            name: 'open-hi-hat',
-            sound: 'open-hi-hat',
-            label: 'Open Hi-hat',
-            short: 'OHH',
-        },
-        {
-            show: true,
-            midi: 51,
-            abc: 'a',
-            name: 'ride-cymbal',
-            sound: 'ride-cymbal-1',
-            label: 'Ride',
-            short: 'RD',
-        },
-        {
-            show: false,
-            midi: 51,
-            abc: '_a',
-            name: 'ride-bell',
-            sound: 'ride-bell',
-            label: 'Ride bell',
-            short: 'RB',
-        },
-        {
-            show: true,
-            midi: 49,
-            abc: 'b',
-            name: 'crash-cymbal',
-            sound: 'crash-cymbal-1',
-            label: 'Crash',
-            short: 'CR',
-        },
-        {
-            show: false,
-            midi: 57,
-            abc: "!style=x!c'",
-            name: 'crash-cymbal-2',
-            sound: 'crash-cymbal-2',
-            label: 'Crash 2',
-            short: 'CR',
-        },
-        {
-            show: true,
-            midi: 48,
-            abc: 'e',
-            name: 'hi-mid-tom',
-            sound: 'hi-mid-tom',
-            label: 'High Tom',
-            short: 'HT',
-        },
-        {
-            show: true,
-            midi: 45,
-            abc: 'd',
-            name: 'low-mid-tom',
-            sound: 'low-mid-tom',
-            label: 'Low Tom',
-            short: 'LT',
-        },
-        {
-            show: true,
-            midi: 43,
-            abc: 'G',
-            name: 'high-floor-tom',
-            sound: 'high-floor-tom',
-            label: 'Floor Tom',
-            short: 'FT',
-        },
-        {
-            show: true,
-            midi: 44,
-            abc: 'D',
-            name: 'pedal-hi-hat',
-            sound: 'pedal-hi-hat',
-            label: 'Pedal Hi-hat',
-            short: 'PHH',
-        },
-    ];
+export const defaultNotes = [
+    {
+        abc: '_c',
+        label: 'Electric Snare',
+        midi: 38,
+        name: 'electric-snare',
+        short: 'SN',
+        show: false,
+        sound: 'electric-snare',
+    },
+    {
+        abc: 'c',
+        label: 'Snare',
+        midi: 38,
+        name: 'acoustic-snare',
+        short: 'SN',
+        show: true,
+        sound: 'acoustic-snare',
+    },
+    {
+        abc: '=c',
+        abcStyle: 'x',
+        label: 'Rim Shot',
+        midi: 37,
+        name: 'side-stick',
+        short: 'RS',
+        show: false,
+        sound: 'side-stick',
+    },
+    {
+        abc: 'F',
+        label: 'Bass',
+        midi: 36,
+        name: 'acoustic-bass-drum',
+        short: 'BD',
+        show: true,
+        sound: 'acoustic-bass-drum',
+    },
+    {
+        abc: 'E',
+        label: 'Bass',
+        midi: 36,
+        name: 'bass-drum',
+        short: 'BS',
+        show: false,
+        sound: 'bass-drum',
+    },
+    {
+        abc: 'g',
+        abcStyle: 'x',
+        label: 'Closed Hi-hat',
+        midi: 42,
+        name: 'closed-hi-hat',
+        short: 'CHH',
+        show: true,
+        sound: 'closed-hi-hat',
+    },
+    {
+        abc: `"^o"^g`,
+        abcStyle: 'x',
+        label: 'Open Hi-hat',
+        midi: 46,
+        name: 'open-hi-hat',
+        short: 'OHH',
+        show: true,
+        sound: 'open-hi-hat',
+    },
+    {
+        abc: 'a',
+        abcStyle: 'x',
+        label: 'Ride',
+        midi: 51,
+        name: 'ride-cymbal',
+        short: 'RD',
+        show: true,
+        sound: 'ride-cymbal-1',
+    },
+    {
+        abc: '_a',
+        abcStyle: 'harmonic',
+        label: 'Ride bell',
+        midi: 51,
+        name: 'ride-bell',
+        short: 'RB',
+        show: false,
+        sound: 'ride-bell',
+    },
+    {
+        abc: 'b',
+        abcStyle: 'x',
+        label: 'Crash',
+        midi: 49,
+        name: 'crash-cymbal',
+        short: 'CR',
+        show: true,
+        sound: 'crash-cymbal-1',
+    },
+    {
+        abc: "!style=x!c'",
+        abcStyle: 'x',
+        label: 'Crash 2',
+        midi: 57,
+        name: 'crash-cymbal-2',
+        short: 'CR',
+        show: false,
+        sound: 'crash-cymbal-2',
+    },
+    {
+        abc: '^d',
+        abcStyle: 'triangle',
+        label: 'High Wood Block',
+        midi: 48,
+        name: 'hi-wood-block',
+        short: 'HW',
+        show: false,
+        sound: 'hi-wood-block',
+    },
+    {
+        abc: 'e',
+        label: 'High Tom',
+        midi: 48,
+        name: 'hi-mid-tom',
+        short: 'HT',
+        show: true,
+        sound: 'hi-mid-tom',
+    },
+    {
+        abc: 'f',
+        label: 'High Tom',
+        midi: 48,
+        name: 'high-tom',
+        short: 'HT',
+        show: true,
+        sound: 'high-tom',
+    },
+    {
+        abc: 'd',
+        label: 'Low Tom',
+        midi: 45,
+        name: 'low-mid-tom',
+        short: 'LM',
+        show: true,
+        sound: 'low-mid-tom',
+    },
+    {
+        abc: 'B',
+        label: 'Low Tom',
+        midi: 45,
+        name: 'low-tom',
+        short: 'LT',
+        show: true,
+        sound: 'low-tom',
+    },
+    {
+        abc: 'A',
+        label: 'Floor Tom',
+        midi: 43,
+        name: 'high-floor-tom',
+        short: 'FT',
+        show: true,
+        sound: 'high-floor-tom',
+    },
+    {
+        abc: 'G',
+        label: 'Low Floor Tom',
+        midi: 43,
+        name: 'low-floor-tom',
+        short: 'FT',
+        show: true,
+        sound: 'low-floor-tom',
+    },
+    {
+        abc: 'D',
+        abcStyle: 'x',
+        label: 'Pedal Hi-hat',
+        midi: 44,
+        name: 'pedal-hi-hat',
+        short: 'PHH',
+        show: true,
+        sound: 'pedal-hi-hat',
+    },
+    {
+        abc: '^B',
+        abcStyle: 'triangle',
+        label: 'Tambourine',
+        midi: 54,
+        name: 'tambourine',
+        short: 'TB',
+        show: true,
+        sound: 'tambourine',
+    },
+    {
+        abc: '_C',
+        abcStyle: 'triangle',
+        label: 'Low Wood Block',
+        midi: 77,
+        name: 'low-wood-block',
+        short: 'TB',
+        show: false,
+        sound: 'low-wood-block',
+    },
+    {
+        abc: '^e',
+        abcStyle: 'triangle',
+        label: 'Cowbell',
+        midi: 56,
+        name: 'cowbell',
+        short: 'CB',
+        show: false,
+        sound: 'cowbell',
+    },
+    {
+        abc: '^a',
+        abcStyle: 'triangle',
+        label: 'Open Triangle',
+        midi: 98,
+        name: 'open-triangle',
+        short: 'TR',
+        show: false,
+        sound: 'open-triangle',
+    },
+];
+
+export const getDrumMapNotes = async (): Promise<Note[]> => {
+    const notes = await get<Note[]>('notes');
 
     return notes;
 };
@@ -161,7 +260,7 @@ export const getNoteByMidi = (
     return note;
 };
 
-export const getShownNotes = (notes: Note[]): Note[] => {
+export const getShowingNotes = (notes: Note[]): Note[] => {
     const shownNotes = notes.filter(({ show }) => show);
     return shownNotes;
 };

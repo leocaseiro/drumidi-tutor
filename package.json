@@ -16,6 +16,7 @@
         "@capacitor/ios": "4.4.0",
         "@ionic/react": "^6.0.0",
         "@ionic/react-router": "^6.0.0",
+        "@ionic/storage": "^3.0.6",
         "abcjs": "^6.1.6",
         "capacitor-midi": "^0.0.12",
         "font-awesome": "^4.7.0",

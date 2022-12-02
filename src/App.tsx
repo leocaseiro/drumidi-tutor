@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { useEffect } from 'react';
 import {
     IonApp,
     IonRouterOutlet,
@@ -34,10 +34,24 @@ import './theme/variables.css';
 import './theme/app.css';
 import MidiComponent from './components/Midi';
 import { DataProvider } from './store';
+import { createStore, get, set } from './utils/storage';
+import { defaultNotes } from './utils/drumMap';
 
 setupIonicReact();
 
 const App: React.FC = () => {
+    useEffect(() => {
+        const setupStore = async () => {
+            await createStore();
+            const notes = await get('notes');
+
+            if (!notes) {
+                set('notes', defaultNotes);
+            }
+        };
+
+        setupStore();
+    }, []);
     return (
         <IonApp>
             <DataProvider>
