@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
     IonButton,
     IonButtons,
-    IonCol,
     IonContent,
-    IonGrid,
     IonHeader,
     IonIcon,
     IonItem,
@@ -16,16 +14,34 @@ import {
     IonListHeader,
     IonMenuButton,
     IonPage,
-    IonRow,
     IonTitle,
+    IonToggle,
     IonToolbar,
+    useIonAlert,
 } from '@ionic/react';
-import { options, pencil } from 'ionicons/icons';
+import { options } from 'ionicons/icons';
 
 import { Note, getDrumMapNotes } from '../../../utils/drumMap';
 
 const Midi: React.FC = () => {
     const [notes, setNotes] = useState<Note[]>([]);
+    const [presentAlert] = useIonAlert();
+
+    const confirmReset = (noteLabel: string, noteName: string) => () =>
+        presentAlert({
+            header: `Are you sure you want to reset ${noteLabel}?`,
+            cssClass: 'custom-alert',
+            buttons: [
+                {
+                    text: 'No',
+                    cssClass: 'alert-button-cancel',
+                },
+                {
+                    text: 'Yes',
+                    cssClass: 'alert-button-confirm',
+                },
+            ],
+        });
 
     useEffect(() => {
         (async () => {
@@ -57,6 +73,10 @@ const Midi: React.FC = () => {
                     {notes.map((note, i) => (
                         <IonItemSliding key={i}>
                             <IonItem>
+                                <IonToggle
+                                    checked={note.show}
+                                    slot="start"
+                                ></IonToggle>
                                 <IonLabel>
                                     {note.label} ({note.midi.join(',')})
                                 </IonLabel>
@@ -64,7 +84,14 @@ const Midi: React.FC = () => {
 
                             <IonItemOptions>
                                 <IonItemOption>Edit</IonItemOption>
-                                <IonItemOption disabled={true} color="danger">
+                                <IonItemOption
+                                    onClick={confirmReset(
+                                        note.label,
+                                        note.name
+                                    )}
+                                    disabled={true}
+                                    color="danger"
+                                >
                                     Reset
                                 </IonItemOption>
                             </IonItemOptions>
