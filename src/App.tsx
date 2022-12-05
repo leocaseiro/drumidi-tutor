@@ -15,6 +15,7 @@ import Lesson from './pages/Lessons/Lesson';
 import Lessons from './pages/Lessons/Lessons';
 import Setting from './pages/Settings/Setting';
 import Settings from './pages/Settings/Settings';
+import MidiSettings from './pages/Settings/Midi/Midi';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
@@ -98,13 +99,18 @@ const App: React.FC = () => {
                             component={Exercise}
                         /> */}
                             <Route
+                                path="/page/settings/:page"
+                                component={Setting}
+                            />
+                            <Route
+                                path="/page/settings/map-midi"
+                                exact={true}
+                                component={MidiSettings}
+                            />
+                            <Route
                                 path="/page/settings"
                                 exact={true}
                                 component={Settings}
-                            />
-                            <Route
-                                path="/page/settings/:page"
-                                component={Setting}
                             />
                         </IonRouterOutlet>
                     </IonSplitPane>

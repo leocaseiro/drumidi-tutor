@@ -50,7 +50,7 @@ const Lesson: React.FC = () => {
                         <IonMenuButton />
                     </IonButtons>
                     <IonTitle>
-                        <IonIcon icon={school} />
+                        <IonIcon className="IonTitle__IonIcon" icon={school} />
                         {` `}
                         <IonLabel>
                             Lesson - {category} {note?.label}

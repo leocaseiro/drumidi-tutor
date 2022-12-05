@@ -1,5 +1,5 @@
 import React from 'react';
-import { school } from 'ionicons/icons';
+import { options } from 'ionicons/icons';
 import {
     IonButtons,
     IonContent,
@@ -27,7 +27,7 @@ const Settings: React.FC<RouteComponentProps> = ({ match }) => {
                         <IonMenuButton />
                     </IonButtons>
                     <IonTitle>
-                        <IonIcon className="IonTitle__IonIcon" icon={school} />
+                        <IonIcon className="IonTitle__IonIcon" icon={options} />
                         <IonLabel>Settings</IonLabel>
                     </IonTitle>
                 </IonToolbar>

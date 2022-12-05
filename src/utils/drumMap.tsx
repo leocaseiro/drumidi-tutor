@@ -4,7 +4,7 @@ export type Note = {
     abc: string;
     abcStyle?: string;
     label: string;
-    midi: number;
+    midi: number[];
     name: string;
     short: string;
     show: boolean;
@@ -19,7 +19,7 @@ export const defaultNotes = [
     {
         abc: '_c',
         label: 'Electric Snare',
-        midi: 38,
+        midi: [38],
         name: 'electric-snare',
         short: 'SN',
         show: false,
@@ -28,7 +28,7 @@ export const defaultNotes = [
     {
         abc: 'c',
         label: 'Snare',
-        midi: 38,
+        midi: [38],
         name: 'acoustic-snare',
         short: 'SN',
         show: true,
@@ -38,7 +38,7 @@ export const defaultNotes = [
         abc: '=c',
         abcStyle: 'x',
         label: 'Rim Shot',
-        midi: 37,
+        midi: [37],
         name: 'side-stick',
         short: 'RS',
         show: false,
@@ -47,7 +47,7 @@ export const defaultNotes = [
     {
         abc: 'F',
         label: 'Bass',
-        midi: 36,
+        midi: [36],
         name: 'acoustic-bass-drum',
         short: 'BD',
         show: true,
@@ -56,7 +56,7 @@ export const defaultNotes = [
     {
         abc: 'E',
         label: 'Bass',
-        midi: 36,
+        midi: [36],
         name: 'bass-drum',
         short: 'BS',
         show: false,
@@ -66,7 +66,7 @@ export const defaultNotes = [
         abc: 'g',
         abcStyle: 'x',
         label: 'Closed Hi-hat',
-        midi: 42,
+        midi: [42],
         name: 'closed-hi-hat',
         short: 'CHH',
         show: true,
@@ -76,7 +76,7 @@ export const defaultNotes = [
         abc: `"^o"^g`,
         abcStyle: 'x',
         label: 'Open Hi-hat',
-        midi: 46,
+        midi: [46],
         name: 'open-hi-hat',
         short: 'OHH',
         show: true,
@@ -86,7 +86,7 @@ export const defaultNotes = [
         abc: 'a',
         abcStyle: 'x',
         label: 'Ride',
-        midi: 51,
+        midi: [51],
         name: 'ride-cymbal',
         short: 'RD',
         show: true,
@@ -96,7 +96,7 @@ export const defaultNotes = [
         abc: '_a',
         abcStyle: 'harmonic',
         label: 'Ride bell',
-        midi: 51,
+        midi: [51],
         name: 'ride-bell',
         short: 'RB',
         show: false,
@@ -106,7 +106,7 @@ export const defaultNotes = [
         abc: 'b',
         abcStyle: 'x',
         label: 'Crash',
-        midi: 49,
+        midi: [49],
         name: 'crash-cymbal',
         short: 'CR',
         show: true,
@@ -116,7 +116,7 @@ export const defaultNotes = [
         abc: "!style=x!c'",
         abcStyle: 'x',
         label: 'Crash 2',
-        midi: 57,
+        midi: [57],
         name: 'crash-cymbal-2',
         short: 'CR',
         show: false,
@@ -126,7 +126,7 @@ export const defaultNotes = [
         abc: '^d',
         abcStyle: 'triangle',
         label: 'High Wood Block',
-        midi: 48,
+        midi: [48],
         name: 'hi-wood-block',
         short: 'HW',
         show: false,
@@ -135,7 +135,7 @@ export const defaultNotes = [
     {
         abc: 'e',
         label: 'High Tom',
-        midi: 48,
+        midi: [48],
         name: 'hi-mid-tom',
         short: 'HT',
         show: true,
@@ -144,7 +144,7 @@ export const defaultNotes = [
     {
         abc: 'f',
         label: 'High Tom',
-        midi: 48,
+        midi: [48],
         name: 'high-tom',
         short: 'HT',
         show: true,
@@ -153,7 +153,7 @@ export const defaultNotes = [
     {
         abc: 'd',
         label: 'Low Tom',
-        midi: 45,
+        midi: [45],
         name: 'low-mid-tom',
         short: 'LM',
         show: true,
@@ -162,7 +162,7 @@ export const defaultNotes = [
     {
         abc: 'B',
         label: 'Low Tom',
-        midi: 45,
+        midi: [45],
         name: 'low-tom',
         short: 'LT',
         show: true,
@@ -171,7 +171,7 @@ export const defaultNotes = [
     {
         abc: 'A',
         label: 'Floor Tom',
-        midi: 43,
+        midi: [43],
         name: 'high-floor-tom',
         short: 'FT',
         show: true,
@@ -180,7 +180,7 @@ export const defaultNotes = [
     {
         abc: 'G',
         label: 'Low Floor Tom',
-        midi: 43,
+        midi: [43],
         name: 'low-floor-tom',
         short: 'FT',
         show: true,
@@ -190,7 +190,7 @@ export const defaultNotes = [
         abc: 'D',
         abcStyle: 'x',
         label: 'Pedal Hi-hat',
-        midi: 44,
+        midi: [44],
         name: 'pedal-hi-hat',
         short: 'PHH',
         show: true,
@@ -200,7 +200,7 @@ export const defaultNotes = [
         abc: '^B',
         abcStyle: 'triangle',
         label: 'Tambourine',
-        midi: 54,
+        midi: [54],
         name: 'tambourine',
         short: 'TB',
         show: true,
@@ -210,7 +210,7 @@ export const defaultNotes = [
         abc: '_C',
         abcStyle: 'triangle',
         label: 'Low Wood Block',
-        midi: 77,
+        midi: [77],
         name: 'low-wood-block',
         short: 'TB',
         show: false,
@@ -220,7 +220,7 @@ export const defaultNotes = [
         abc: '^e',
         abcStyle: 'triangle',
         label: 'Cowbell',
-        midi: 56,
+        midi: [56],
         name: 'cowbell',
         short: 'CB',
         show: false,
@@ -230,7 +230,7 @@ export const defaultNotes = [
         abc: '^a',
         abcStyle: 'triangle',
         label: 'Open Triangle',
-        midi: 98,
+        midi: [98],
         name: 'open-triangle',
         short: 'TR',
         show: false,
@@ -256,7 +256,7 @@ export const getNoteByMidi = (
     notes: Note[],
     noteMidi: number
 ): Note | undefined => {
-    const note = notes.find(({ midi }) => midi === noteMidi);
+    const note = notes.find(({ midi }) => midi.includes(noteMidi));
     return note;
 };
 

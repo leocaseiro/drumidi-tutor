@@ -1,5 +1,6 @@
+/* eslint-disable no-debugger */
 import React, { useEffect, useState } from 'react';
-import { checkmarkCircle, closeCircle, school } from 'ionicons/icons';
+import { checkmarkCircle, closeCircle, flask } from 'ionicons/icons';
 import {
     IonButton,
     IonButtons,
@@ -80,14 +81,16 @@ const Exercise: React.FC = () => {
         let color;
         let duration = 1000;
 
-        if (noteMidi === note.midi) {
+        if (note.midi.includes(noteMidi)) {
             msg = `Correct ${note.label}`;
             icon = checkmarkCircle;
             color = 'success';
             duration = 1000;
         } else {
             const wrongMidi = getNoteByMidi(shownNotes, noteMidi);
-            msg = `Wrong, it was ${note.label}:${note.midi}, instead of ${wrongMidi?.label}`;
+            msg = `Wrong, it was ${note.label}:${note.midi.join(
+                ','
+            )}, instead of ${wrongMidi?.label}`;
             icon = closeCircle;
             color = 'danger';
             duration = 3000;
@@ -119,7 +122,7 @@ const Exercise: React.FC = () => {
                         <IonMenuButton />
                     </IonButtons>
                     <IonTitle>
-                        <IonIcon slot="start" icon={school} />
+                        <IonIcon className="IonTitle__IonIcon" icon={flask} />
                         <IonLabel>
                             Exercise {category} {id}
                         </IonLabel>
@@ -142,7 +145,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'open-hi-hat')?.midi
+                                    getNoteByName(notes, 'open-hi-hat')?.midi[0]
                                 }
                             >
                                 Open Hi-hat
@@ -150,7 +153,8 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'closed-hi-hat')?.midi
+                                    getNoteByName(notes, 'closed-hi-hat')
+                                        ?.midi[0]
                                 }
                             >
                                 Closed Hi-hat
@@ -160,7 +164,8 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'crash-cymbal')?.midi
+                                    getNoteByName(notes, 'crash-cymbal')
+                                        ?.midi[0]
                                 }
                             >
                                 Crash
@@ -170,7 +175,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'ride-cymbal')?.midi
+                                    getNoteByName(notes, 'ride-cymbal')?.midi[0]
                                 }
                             >
                                 Ride
@@ -182,7 +187,8 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'acoustic-snare')?.midi
+                                    getNoteByName(notes, 'acoustic-snare')
+                                        ?.midi[0]
                                 }
                             >
                                 Snare
@@ -192,7 +198,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'hi-mid-tom')?.midi
+                                    getNoteByName(notes, 'hi-mid-tom')?.midi[0]
                                 }
                             >
                                 High Tom
@@ -202,7 +208,7 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'low-mid-tom')?.midi
+                                    getNoteByName(notes, 'low-mid-tom')?.midi[0]
                                 }
                             >
                                 Low Tom
@@ -214,7 +220,8 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'pedal-hi-hat')?.midi
+                                    getNoteByName(notes, 'pedal-hi-hat')
+                                        ?.midi[0]
                                 }
                             >
                                 Pedal Hi-Hat
@@ -225,7 +232,7 @@ const Exercise: React.FC = () => {
                                 onClick={handleClick}
                                 data-note-midi={
                                     getNoteByName(notes, 'acoustic-bass-drum')
-                                        ?.midi
+                                        ?.midi[0]
                                 }
                             >
                                 Bass
@@ -235,7 +242,8 @@ const Exercise: React.FC = () => {
                             <IonButton
                                 onClick={handleClick}
                                 data-note-midi={
-                                    getNoteByName(notes, 'high-floor-tom')?.midi
+                                    getNoteByName(notes, 'high-floor-tom')
+                                        ?.midi[0]
                                 }
                             >
                                 Floor Tom

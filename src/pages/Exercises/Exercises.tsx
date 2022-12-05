@@ -1,5 +1,5 @@
 import React from 'react';
-import { school } from 'ionicons/icons';
+import { flask } from 'ionicons/icons';
 import {
     IonButtons,
     IonContent,
@@ -27,7 +27,7 @@ const Exercises: React.FC<RouteComponentProps> = ({ match }) => {
                         <IonMenuButton />
                     </IonButtons>
                     <IonTitle>
-                        <IonIcon className="IonTitle__IonIcon" icon={school} />
+                        <IonIcon className="IonTitle__IonIcon" icon={flask} />
                         <IonLabel>Exercises</IonLabel>
                     </IonTitle>
                 </IonToolbar>
