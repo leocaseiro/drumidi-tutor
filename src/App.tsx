@@ -50,6 +50,7 @@ const App: React.FC = () => {
 
             if (!notes) {
                 set('notes', defaultNotes);
+                set('allNotes', { defaultNotes });
             }
         };
 
