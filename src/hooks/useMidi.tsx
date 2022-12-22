@@ -42,6 +42,7 @@ export const useMidi = () => {
     };
 
     const init = () => {
+        setDevices([]);
         updateDevices();
 
         MIDI.addListener('MIDI_MSG_EVENT', midiEvent);

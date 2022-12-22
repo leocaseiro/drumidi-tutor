@@ -1,6 +1,7 @@
 /* eslint-disable no-debugger */
 import React, { useEffect } from 'react';
 import {
+    IonButton,
     IonContent,
     IonIcon,
     IonItem,
@@ -18,7 +19,14 @@ import {
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import { flask, musicalNotes, options, play, school } from 'ionicons/icons';
+import {
+    flask,
+    musicalNotes,
+    options,
+    play,
+    reload,
+    school,
+} from 'ionicons/icons';
 import './Menu.css';
 import { useDataProvider } from '../store';
 import { useMidi } from '../hooks/useMidi';
@@ -78,11 +86,26 @@ const Menu: React.FC = () => {
         setMidiDevice && setMidiDevice(e.detail.value);
     };
 
+    const onReload = () => {
+        setMidiEnabled && setMidiEnabled(false);
+        setMidiDevice && setMidiDevice(null);
+        initMidi();
+    };
+
     return (
         <IonMenu contentId="main" type="overlay">
             <IonContent>
                 <IonList id="menu-list">
-                    <IonListHeader>DruMIDI Tutor</IonListHeader>
+                    <IonListHeader>
+                        DruMIDI Tutor
+                        <IonButton
+                            onClick={onReload}
+                            shape="round"
+                            fill="clear"
+                        >
+                            <IonIcon icon={reload} />
+                        </IonButton>
+                    </IonListHeader>
                     <IonNote>by @lcaseiro</IonNote>
                     <IonItem lines="none" detail={false}>
                         <IonLabel>MIDI</IonLabel>
