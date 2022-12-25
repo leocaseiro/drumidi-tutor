@@ -19,14 +19,7 @@ import {
 } from '@ionic/react';
 
 import { useLocation } from 'react-router-dom';
-import {
-    flask,
-    musicalNotes,
-    options,
-    play,
-    reload,
-    school,
-} from 'ionicons/icons';
+import { flask, options, reload, school } from 'ionicons/icons';
 import './Menu.css';
 import { useDataProvider } from '../store';
 import { useMidi } from '../hooks/useMidi';

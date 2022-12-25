@@ -42,7 +42,7 @@ const MidiItemOption: React.FC<{
             <IonItem>
                 <IonToggle checked={note.show} slot="start"></IonToggle>
                 <IonLabel>
-                    {note.label} ({note.midi.join(',')})
+                    {note.label} [{note.sound}] ({note.midi.join(',')})
                 </IonLabel>
             </IonItem>
 
