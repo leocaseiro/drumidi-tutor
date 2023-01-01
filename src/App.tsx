@@ -5,7 +5,7 @@ import {
     IonSplitPane,
     setupIonicReact,
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { IonReactHashRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 import Menu from './components/Menu';
 // import Page from './pages/Page';
@@ -59,7 +59,7 @@ const App: React.FC = () => {
     return (
         <IonApp>
             <DataProvider>
-                <IonReactRouter>
+                <IonReactHashRouter>
                     <IonSplitPane contentId="main">
                         <Menu />
                         <IonRouterOutlet id="main">
@@ -115,7 +115,7 @@ const App: React.FC = () => {
                             />
                         </IonRouterOutlet>
                     </IonSplitPane>
-                </IonReactRouter>
+                </IonReactHashRouter>
             </DataProvider>
         </IonApp>
     );
