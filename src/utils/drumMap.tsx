@@ -14,12 +14,13 @@ export type Note = {
 export const getRandomNote = (notes: Note[]): Note => {
     return notes[Math.floor(Math.random() * notes.length)];
 };
-
+// TODO Separate MIDI mapped by abcjs based on sound
+// eg: [{sound: "low-mid-tom", "MIDI": 47}, {sound: "electric-snare", "MIDI": 40}]
 export const defaultNotes = [
     {
         abc: '_c',
         label: 'Electric Snare',
-        midi: [38],
+        midi: [40],
         name: 'electric-snare',
         short: 'SN',
         show: false,
@@ -47,7 +48,7 @@ export const defaultNotes = [
     {
         abc: 'F',
         label: 'Bass',
-        midi: [36],
+        midi: [35],
         name: 'acoustic-bass-drum',
         short: 'BD',
         show: true,
@@ -60,7 +61,7 @@ export const defaultNotes = [
         name: 'bass-drum',
         short: 'BS',
         show: false,
-        sound: 'bass-drum',
+        sound: 'bass-drum-1',
     },
     {
         abc: 'g',
@@ -96,7 +97,7 @@ export const defaultNotes = [
         abc: '_a',
         abcStyle: 'harmonic',
         label: 'Ride bell',
-        midi: [51],
+        midi: [53],
         name: 'ride-bell',
         short: 'RB',
         show: false,
@@ -126,7 +127,7 @@ export const defaultNotes = [
         abc: '^d',
         abcStyle: 'triangle',
         label: 'High Wood Block',
-        midi: [48],
+        midi: [76],
         name: 'hi-wood-block',
         short: 'HW',
         show: false,
@@ -144,7 +145,7 @@ export const defaultNotes = [
     {
         abc: 'f',
         label: 'High Tom',
-        midi: [48],
+        midi: [50],
         name: 'high-tom',
         short: 'HT',
         show: true,
@@ -153,7 +154,7 @@ export const defaultNotes = [
     {
         abc: 'd',
         label: 'Low Tom',
-        midi: [45],
+        midi: [47],
         name: 'low-mid-tom',
         short: 'LM',
         show: true,
@@ -180,7 +181,7 @@ export const defaultNotes = [
     {
         abc: 'G',
         label: 'Low Floor Tom',
-        midi: [43],
+        midi: [41],
         name: 'low-floor-tom',
         short: 'FT',
         show: true,
@@ -230,7 +231,7 @@ export const defaultNotes = [
         abc: '^a',
         abcStyle: 'triangle',
         label: 'Open Triangle',
-        midi: [98],
+        midi: [81],
         name: 'open-triangle',
         short: 'TR',
         show: false,
